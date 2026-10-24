@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090d18">
+  <title>NovaTrade — Demo Trading</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">N</span> NOVA<span>TRADE</span></a>
+    <div class="top-actions"><span class="demo-pill">DEMO ACCOUNT</span><button id="logoutBtn" class="ghost hidden">Sign out</button></div>
+  </header>
+  <main class="page">
+    <section id="authPanel" class="auth-layout">
+      <div class="hero-copy">
+        <p class="eyebrow">PRACTICE WITHOUT RISKING REAL MONEY</p>
+        <h1>Learn the market.<br><span>Build your strategy.</span></h1>
+        <p class="muted">A modern trading simulator powered by virtual funds. No live orders, no real-money trading.</p>
+        <div class="feature-row"><span>✓ Virtual balance</span><span>✓ Trade history</span><span>✓ Practice mode</span></div>
+      </div>
+      <div class="panel auth-card">
+        <div class="tabs"><button class="tab active" data-tab="login">Sign in</button><button class="tab" data-tab="register">Create account</button></div>
+        <form id="authForm">
+          <label id="nameLabel" class="hidden">Display name<input name="displayName" minlength="2" maxlength="50" autocomplete="name"></label>
+          <label>Email address<input name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label>
+          <label>Password<input name="password" type="password" required minlength="10" autocomplete="current-password" placeholder="At least 10 characters"></label>
+          <button class="primary full" type="submit" id="authSubmit">Sign in</button>
+          <p id="authMessage" class="message" role="status"></p>
+        </form>
+        <p class="tiny">Demo simulator only. Initial virtual balance: KSh 10,000.</p>
+      </div>
+    </section>
+    <section id="appPanel" class="hidden">
+      <div class="welcome-row"><div><p class="eyebrow">TRADING TERMINAL / PRACTICE</p><h1>Dashboard</h1><p class="muted">Welcome, <span id="userName">trader</span></p></div><div class="balance-card"><span>VIRTUAL BALANCE</span><strong id="balance">KSh 10,000.00</strong><button id="topupBtn" class="small-btn">+ Add demo funds</button></div></div>
+      <div class="dashboard-grid">
+        <section class="panel market-panel">
+          <div class="panel-head"><div><p class="eyebrow">SIMULATED MARKET</p><h2>Market overview</h2></div><span class="live-dot">● SIMULATED</span></div>
+          <div class="chart-toolbar"><select id="asset"><option>EUR/USD</option><option>GBP/USD</option><option>USD/JPY</option><option>BTC/USD</option><option>ETH/USD</option></select><span class="price" id="price">1.08425</span><span class="change">+0.42%</span></div>
+          <div class="chart-wrap"><canvas id="chart" aria-label="Illustrative simulated price chart"></canvas><div class="chart-label">ILLUSTRATIVE DATA — NOT LIVE MARKET PRICES</div></div>
+          <div class="asset-strip"><div><span>Asset</span><b id="assetLabel">EUR/USD</b></div><div><span>Mode</span><b>Practice</b></div><div><span>Return on win</span><b>80%</b></div></div>
+        </section>
+        <section class="panel trade-panel">
+          <div class="panel-head"><div><p class="eyebrow">PLACE A PRACTICE TRADE</p><h2>New trade</h2></div><span class="badge">VIRTUAL</span></div>
+          <form id="tradeForm">
+            <label>Stake amount (virtual KSh)<input id="stake" type="number" min="10" max="5000" step="10" value="100" required></label>
+            <div class="quick-stakes"><button type="button" data-stake="100">100</button><button type="button" data-stake="250">250</button><button type="button" data-stake="500">500</button><button type="button" data-stake="1000">1,000</button></div>
+            <label>Trade duration<select id="duration"><option value="5">5 seconds (test)</option><option value="15">15 seconds</option><option value="30" selected>30 seconds</option><option value="60">1 minute</option><option value="120">2 minutes</option><option value="300">5 minutes</option></select></label>
+            <div class="trade-actions"><button type="button" class="up-btn" id="upBtn">↗ Predict UP</button><button type="button" class="down-btn" id="downBtn">↘ Predict DOWN</button></div>
+            <p class="tiny">Results are randomly simulated. This is not financial advice or a real market.</p>
+            <p id="tradeMessage" class="message" role="status"></p>
+          </form>
+        </section>
+      </div>
+      <section class="panel history-panel"><div class="panel-head"><div><p class="eyebrow">YOUR ACTIVITY</p><h2>Recent trades</h2></div><button id="refreshBtn" class="ghost">Refresh</button></div><div class="table-wrap"><table><thead><tr><th>Asset</th><th>Direction</th><th>Stake</th><th>Result</th><th>Payout</th><th>Time</th></tr></thead><tbody id="tradeRows"><tr><td colspan="6" class="muted">Sign in to see your trades.</td></tr></tbody></table></div></section>
+      <section class="panel payments-panel"><div><p class="eyebrow">PAYMENTS</p><h2>M-Pesa</h2><p class="muted">Live M-Pesa payments are not configured. Payments would be separate from virtual demo funds.</p></div><span class="badge warning">NOT CONFIGURED</span><p id="mpesaStatus" class="tiny">Checking integration status…</p></section>
+    </section>
+    <footer><span>NovaTrade Demo</span><span>Virtual funds only · No real trading · Not affiliated with PalOption</span></footer>
+  </main>
+  <script src="/app.js" defer></script>
+</body>
+</html>
